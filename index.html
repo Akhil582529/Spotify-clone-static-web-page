@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Spotify- Web Player: Music for everyone </title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: black;
+        }
+
+        .navbar ul {
+            display: flex;
+            /* flex-grow: 1; */
+            align-items: center;
+            /* overflow: auto; */
+        }
+
+        .navbar li {
+            float: left;
+            list-style: none;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar li a {
+            color: rgb(157, 152, 152);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar li img {
+            width: 40px;
+            padding-left: 0px;
+        }
+
+        .search input {
+
+            border: 2px solid grey;
+            background-color: rgb(44, 42, 42);
+            border-radius: 50px;
+            /* margin: 10px; */
+            padding: 15px;
+            width: 230%;
+            color: black;
+            background-color: white;
+            font-size: 16px;
+        }
+
+        .middle {
+
+            display: flex;
+            /* flex-grow: 1; */
+            /* flex-direction: row; */
+            justify-content: center;
+            /* align-items: center; */
+            padding-left: 30%;
+        }
+
+        .login {
+            padding: 15px 15px;
+            border-radius: 25px;
+            width: 6%;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .login a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .login:hover {
+            background-color: rgb(221, 221, 212);
+        }
+
+        .rightSide {
+            display: flex;
+            padding-left: 100px;
+        }
+
+
+        .navbar a:hover {
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+        }
+
+        body {
+            /* display: flex; */
+            background-color: black;
+            height: 100%;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .leftcontainer {
+            margin-left: 5px;
+            border: 2px solid black;
+            width: 40%;
+            max-width: 400px;
+            height: 80vh;
+            border-radius: 10px;
+            background-color: rgb(28, 27, 27);
+        }
+
+        .leftcontainer a {
+            display: flex;
+            padding-top: 25px;
+            padding-left: 30px;
+            text-decoration: none;
+            color: grey;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .leftcontainer a img {
+            /* display: flex; */
+            width: 9%;
+            padding-right: 15px;
+        }
+
+        .leftcontainer a:hover {
+            color: white;
+        }
+
+        .lib {
+            filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(180deg);
+        }
+
+        .add {
+            filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(180deg);
+            stroke-width: 2px;
+            margin-left: 50%;
+            width: 10px;
+        }
+
+        .playlist {
+            margin-top: 35px;
+            margin-left: 10px;
+            padding: 10px;
+            height: 25%;
+            width: 95%;
+            border-radius: 10px;
+            background-color: rgb(65, 60, 60);
+            color: white;
+        }
+
+
+        .create-playlist {
+            padding: 8px 15px;
+            border-radius: 25px;
+            background-color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .playlist strong {
+            margin-top: 10px;
+            display: block;
+        }
+
+        .text-field {
+            margin-left: 10px;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .create-playlist:hover {
+            background-color: rgb(221, 212, 212);
+        }
+
+        .podcast {
+            margin-top: 35px;
+            margin-left: 10px;
+            padding: 10px;
+            height: 25%;
+            width: 95%;
+            border-radius: 10px;
+            background-color: rgb(65, 60, 60);
+            color: white;
+        }
+
+        .browse-podcasts {
+            padding: 8px 15px;
+            border-radius: 25px;
+            background-color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .browse-podcasts:hover {
+            background-color: rgb(221, 212, 212);
+            ;
+        }
+
+        .podcast strong {
+            margin-top: 10px;
+            display: block;
+        }
+
+
+
+        .help ul {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .help li a {
+            font-size: 12px;
+        }
+
+        .cookies {
+            color: white;
+            list-style: none;
+            margin-left: 30px;
+            cursor: pointer;
+        }
+
+        .cookies:hover {
+            text-decoration: underline;
+        }
+
+        .rightcontainer {
+            height: 80vh;
+            display: block;
+            background-color: rgb(28, 27, 27);
+            margin-right: 5px;
+            border-radius: 10px;
+            /* height: 100%; */
+            width: 90%;
+            margin-left: 5px;
+            overflow-y: scroll;
+            /* overflow: hidden; */
+
+
+        }
+
+        .rightcontainer li {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 22px;
+            list-style: none;
+            padding-left: 30px;
+            display: block;
+        }
+
+        .rightcontainer li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .rightcontainer li a:hover {
+            text-decoration: underline;
+        }
+
+        .artists {
+            display: flex;
+            cursor: pointer;
+        }
+
+        .artist-name {
+            text-decoration: none;
+            color: white;
+        }
+
+        .artist-name:hover {
+            text-decoration: underline;
+        }
+
+        .profession {
+            color: grey;
+        }
+
+        .pritam {
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .pritam li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        #pritam {
+            height: 160px;
+            width: 160px;
+            border-radius: 100px;
+        }
+
+        .arijit {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .arijit li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+        .arijit li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        #arijit {
+            height: 160px;
+            width: 160px;
+            border-radius: 100px;
+        }
+
+        .rahman {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .rahman li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+        .rahman li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        #rahman {
+            height: 160px;
+            width: 160px;
+            border-radius: 100px;
+        }
+
+        .sachin {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .sachin li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+        .sachin li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        #sachin {
+            height: 160px;
+            width: 160px;
+            border-radius: 100px;
+        }
+
+
+        .vishal {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .vishal li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+        .vishal li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        #vishal {
+            height: 160px;
+            width: 160px;
+            border-radius: 100px;
+        }
+
+        .atif {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .atif li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+        .atif li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        #atif {
+            height: 160px;
+            width: 160px;
+            border-radius: 100px;
+        }
+
+        .albums {
+            display: flex;
+        }
+
+        #kshma {
+            height: 152px;
+            width: 152px;
+            border-radius: 5px;
+        }
+
+
+        .sm {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .sm li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        .sm li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+        #yoyo {
+            height: 152px;
+            width: 152px;
+            border-radius: 5px;
+        }
+
+        .yoyo {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .yoyo li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        .yoyo li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+
+        #yjhd {
+            height: 152px;
+            width: 152px;
+            border-radius: 5px;
+        }
+
+        .yjhd {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: 160px;
+            width: 160px
+        }
+
+        .yjhd li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        .yjhd li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+
+        #stillhere {
+            height: 152px;
+            width: 152px;
+            border-radius: 5px;
+        }
+
+        .stillhere {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .stillhere li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        .stillhere li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+
+        #hut {
+            height: 152px;
+            width: 152px;
+            border-radius: 5px;
+        }
+
+        .hut {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .hut li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        .hut li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+
+        #sicario {
+            height: 152px;
+            width: 152px;
+            border-radius: 5px;
+        }
+
+        .sicario {
+            margin-top: 10px;
+            margin-left: 20px;
+            height: fit-content;
+            width: fit-content
+        }
+
+        .sicario li a {
+            display: block;
+            font-size: 18px;
+            padding: auto;
+            /* text-align: left; */
+        }
+
+        .sicario li {
+            display: flex;
+            padding-left: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 2px 0;
+        }
+
+        .spotify-footer {
+            display: flex;
+            color: white;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            justify-content: space-between;
+            margin: 8px 8px 10px 10px;
+            padding: 8px 20px;
+            background: linear-gradient(to right, #4b9616, #7366d1, #3b6fe8);
+        }
+
+        .branding {
+            border: 2px solid red;
+            margin-top: 30px;
+            display: flex;
+        }
+
+        .heading {
+            display: flex;
+            color: white;
+        }
+
+        .content {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .column{
+            display: flex;
+            border: 2px solid blue;
+        }
+
+        .footertext {
+            font-size: 16px;
+            max-width: 60%;
+        }
+
+        .footer-signup {
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 25px;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="icons">
+            <li><a href="#"> <img class="spotify" src="spotify icon.jpg" alt=""></a></li>
+            <li><a href="#"> <img class="home" src="Home icon.png" alt=""></a></li>
+        </div>
+
+        <div class="search">
+            <input type="text" name="seacrh" id="searchid" placeholder="What do you want to play?">
+        </div>
+
+        <div class="middle">
+            <li><a href="#">Premium</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Download</a></li>
+        </div>
+
+        <ul>
+            <div class="rightSide">
+                <li><a href="#"> Install App </a></li>
+                <li><a href="#"> Sign up </a></li>
+            </div>
+        </ul>
+
+        <button class="login"> <a href="#"> Log in </a> </button>
+        <!-- <div class="login"><a href="#"> <input type="button" value="Log in"></a></div> -->
+
+    </nav>
+
+
+    <main>
+
+        <div class="container">
+
+
+
+            <div class="leftcontainer">
+
+                <ul>
+                    <li><a href="#"> <img src="Library icon.svg" alt="" class="lib"> Your Library <img
+                                src="plus-circle.svg" alt="" class="add"></a></li>
+                </ul>
+
+                <div class="playlist">
+                    <strong class="text-field"> Create your first playlist</strong> <br>
+                    <p class="text-field"> It's easy, we'll help you</p> <br>
+                    <button class="create-playlist" type="button"> Create playlist</button>
+                </div>
+
+                <div class="podcast">
+                    <strong class="text-field"> Let's find some podcasts to follow</strong> <br>
+                    <p class="text-field"> We'll keep you update on new episodes</p> <br>
+                    <button class="browse-podcasts" type="button"> Browse podcasts</button>
+                </div>
+
+                <div class="help">
+                    <ul>
+                        <li><a href="#">Legal</a></li>
+                        <li><a href="#">Safety&PrivacyCenter</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">About Ads</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+
+                <div class="cookies">
+                    <li><a href="#"></a>Cookies</li>
+                </div>
+
+            </div>
+
+            <div class="rightcontainer">
+                <li><a href="#">Popular artists</a></li>
+
+                <section>
+ 
+                    <div class="artists">
+
+                        <div class="pritam">
+                            <img src="pritam.jfif" alt="" id="pritam">
+                            <strong><a class="artist-name" href="#"> Pritam </a></strong><br>
+                            <span class="profession">Artist</span>
+                        </div>
+
+                        <div class="arijit">
+
+                            <img src="Arijit singh.jfif" alt="" id="arijit">
+                            <strong><a class="artist-name" href="#">Arijit Singh</a></strong><br>
+                            <span class="profession">Artist</span>
+                        </div>
+
+                        <div class="rahman">
+
+                            <img src="AR Rahman.jpg" alt="" id="rahman">
+                            <strong><a class="artist-name" href="#">A.R. Rahman</a></strong><br>
+                            <span class="profession">Artist</span>
+                        </div>
+
+                        <div class="sachin">
+
+                            <img src="Sachin Jigar.jfif" alt="" id="sachin">
+                            <strong><a class="artist-name" href="#">Sachin-Jigar</a></strong><br>
+                            <span class="profession">Artist</span>
+                        </div>
+                        <div class="vishal">
+
+                            <img src="Vishal Shekhar.jpg" alt="" id="vishal">
+                            <strong><a class="artist-name" href="#">Vishal-Shekhar</a></strong><br>
+                            <span class="profession">Artist</span>
+                        </div>
+                        <div class="atif">
+
+                            <img src="Atif Aslam.jpeg" alt="" id="atif">
+                            <strong><a class="artist-name" href="#">Atif Aslam</a></strong><br>
+                            <span class="profession">Artist</span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section>
+
+                    <li><a href="#"> Popular albums and singles</a></li>
+                    <div class="albums">
+
+
+
+                        <div class="sm">
+
+                            <img src="kshma.jfif" alt="#" id="kshma">
+                            <ul>
+                                <li><a href="#">Kshma</a></li>
+                                <li><a href="#">Seedhe Maut</a></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="yoyo">
+
+                            <img src="Glory.jfif" alt="#" id="yoyo">
+                            <ul>
+                                <li><a href="#">Glory</a></li>
+                                <li><a href="#">Yo Yo Honey Singh</a></li>
+                            </ul>
+
+                        </div>
+
+
+                        <div class="yjhd">
+
+                            <img src="yjhd.jfif" alt="#" id="kshma">
+                            <ul>
+                                <li><a href="#">Yeh Jawani Hai Deewani</a></li>
+                                <li><a href="#">Pritam</a></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="stillhere">
+
+                            <img src="Still here.jpg" alt="#" id="stillhere">
+                            <ul>
+                                <li><a href="#">Still Here</a></li>
+                                <li><a href="#">Krsna</a></li>
+                            </ul>
+
+                        </div>
+
+
+                        <div class="sm">
+
+                            <img src="hurry up tomorrow.jfif" alt="#" id="hut">
+                            <ul>
+                                <li><a href="#">Hurry Up Tomorrow</a></li>
+                                <li><a href="#">Weeknd</a></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="sm">
+
+                            <img src="sicario.jfif" alt="#" id="sicario">
+                            <ul>
+                                <li><a href="#">Sicario</a></li>
+                                <li><a href="#">Shubh</a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+
+        </div>
+    </main>
+
+    <footer>
+
+        <div class="spotify-footer">
+
+            <div class="footertext">
+                <strong>Priview of Spotify</strong> <br>
+                Sign up to get unlimited songs and podcasts with occassional ads. No credit card needed.
+            </div>
+
+
+            <input class="footer-signup" type="button" value="Sign up for free">
+
+
+        </div>
+
+    </footer>
+</body>
+
+</html>
